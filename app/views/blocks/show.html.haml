@@ -1,0 +1,71 @@
+=title "Qiwicoin Block ##{@block.block_height}"
+=description "Transactions contained within qiwicoin block #{@block.block_height}"
+
+.container
+  .row-fluid
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12
+      %h2
+        BLOCK
+        = "##{@block.block_height}"
+
+.container
+  .row-fluid
+    .col-xs-12.col-sm-12.col-md-6.col-lg-6
+      .table-responsive
+        %table.table.table-striped
+          %tr
+            %th{colspan: "2"} Summary
+          %tr
+            %td Number Of Transactions
+            %td
+              = @block.block_num_tx
+        
+          %tr
+            %td Output Total
+            %td
+              = num_format(@block.block_value_out)
+              = render 'currency/show'
+
+          %tr
+            %td Height
+            %td= block_height_link(@block)
+
+          %tr
+            %td Timestamp
+            %td= @block.time_to_string
+
+          %tr
+            %td Received Time
+            %td= @block.time_to_string
+
+          %tr
+            %td Bits
+            %td= @block.block_nBits
+
+          %tr
+            %td Version
+            %td= @block.block_version
+
+          %tr
+            %td Nonce
+            %td= @block.block_nNonce
+
+    .col-xs-12.col-sm-12.col-md-6.col-lg-6
+      .table-responsive
+        %table.table.table-striped
+          %tr
+            %th{colspan: "2"} Hashes
+          %tr
+            %td Hash
+            %td= block_hash_link(@block)
+        
+          - if @block.prev_block
+            %tr
+              %td Previous Block
+              %td= block_hash_link(@block.prev_block)
+
+          %tr
+            %td Merkle Root
+            %td= bin_to_hex(@block.block_hashMerkleRoot)
+
+= render 'transactions/txs_details', txs: @txs 

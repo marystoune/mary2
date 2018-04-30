@@ -1,0 +1,63 @@
+.container
+    .row-fluid.margin-20
+        .col-xs-12.col-sm-12.col-md-12.col-lg-12.text-center.fontin-sans
+            %h1.headers QiwiCoin - First Personal Coin
+            
+            - if bonus = Bonus.bonus_descrption           
+                %p.present
+                    Sign up for free right now and get
+                    = bonus
+                    = render 'currency/show'
+            = link_to image_tag("button_ico.png")+" Get started with QiwiCoin", start_path, :class => "btn btn-primary btn-lg margin-20 start_button"
+
+-.container
+    -.row-fluid.margin-20
+        -.col-xs-12.col-sm-12.col-md-12.col-lg-6.text-center.fontin-sans
+            -.embed-responsive.embed-responsive-16by9
+               -iframe{:src => "//www.youtube.com/embed/K0ikOyBuWr4?list=UUI2HO6pCHY321nw1FFHw4CA", :width=>"560", :height=>"315",  :frameborder=>"0", :class=>"embed-responsive-item"}
+.container
+    .row-fluid.margin-50.spec
+        .col-xs-12.col-sm-4.col-md-4.col-lg-4
+            %h3
+                What is QiwiCoin?
+            %p
+                This currency is not anonymous, which allows in the future to make it allowed to legalize and around the world, so this is a huge advantage over other crypto-currencies.
+        .col-xs-12.col-sm-4.col-md-4.col-lg-4
+            %h3
+                Mission
+            %p
+                Make the world better!
+                Our mission is to escape from anonymity and make the payments transparent and honest. We are talking about limiting the use of this currency in the black and gray schemes.
+
+        .col-xs-12.col-sm-4.col-md-4.col-lg-4
+            %h3
+                Specifications
+            %ul
+                %li 
+                    %strong QiwiCoin will be on POS 2.0
+                %li Algorithm: X11
+                %li Block time: 90 seconds
+                %li Difficulty retarget: Dark Gravity Wave Version 3 (DGW v3)
+                %li Min transaction fee: 0.001 QWC
+                %li Fees are paid to miners
+                %li Confirmations: 6
+                %li Confirmations for mining (maturity): 240
+                %li Block reward: 100 QWC, no halving 
+                %li Max height: 10000 (after this network will not accept PoW)
+                %li Premined: 54 000 000 QWC
+                %li Nominal stake interest: 3% annually
+                %li Real network port: 61993
+                %li Real network RPC port: 61992
+                %li Testnet port: 62993
+                %li Testnet RPC port: 62992
+.container
+    .row-fluid.margin-20.text-center
+
+        %h2 Download Wallet
+        =link_to "Windows", download_client_path(file_name: "windows"), { "target" => "_blank", class: "btn btn-primary btn-lg margin-10 dwb" }
+        =link_to "Linux",download_client_path(file_name: "linux"), { "target" => "_blank", class: "btn btn-primary btn-lg margin-10 dwb" }
+        =link_to "Mac OS", download_client_path(file_name: "mac"), { "target" => "_blank", class: "btn btn-primary btn-lg margin-10 dwb" }
+        =link_to "Source", "#", :class => "btn btn-primary btn-lg margin-10 dwb"
+
+= render 'last_txs', txs: @txs
+

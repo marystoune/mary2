@@ -1,0 +1,44 @@
+.container
+	.row-fluid.text-center.fontin-sans.margin-20
+		%h1.headers Get started with QiwiCoin
+
+.container
+	.row-fluid.start
+		.col-xs-12.col-sm-12.col-md-10.col-lg-10.col-md-offset-1.col-lg-offset-1
+			.row
+				.col-xs-12.col-sm-2.col-md-2.col-lg-2.text-right.xs-text-center
+					=image_tag("rounds/round1.png", :class => "round_num")
+				.col-xs-12.col-sm-10.col-md-10.col-lg-10.xs-text-center
+					%p.xs-text-center Download QiwiCoin Wallet for:
+					=link_to "Windows", download_client_path(file_name: "windows"), { "target" => "_blank", class: "btn btn-primary dwb" }
+					=link_to "Linux", download_client_path(file_name: "linux"), { "target" => "_blank", class: "btn btn-primary dwb" }
+					=link_to "Mac OS", download_client_path(file_name: "mac"), { "target" => "_blank", class: "btn btn-primary dwb" }
+					=link_to "Source", "#", :class => "btn btn-primary dwb"
+			.row.margin-20
+				.col-xs-12.col-sm-2.col-md-2.col-lg-2.text-right.xs-text-center
+					=image_tag("rounds/round2.png", :class => "round_num")
+				.col-xs-12.col-sm-10.col-md-10.col-lg-10
+					%p.xs-text-center
+						Sign Up at
+						%strong QiwiCoin
+						on
+						=link_to "Sign Up page", new_user_registration_path
+			.row.margin-20
+				.col-xs-12.col-sm-2.col-md-2.col-lg-2.text-right.xs-text-center
+					=image_tag("rounds/round3.png", :class => "round_num")
+				.col-xs-12.col-sm-10.col-md-10.col-lg-10
+					%p.xs-text-center
+						Fill your
+						=link_to "Profile", profile_path
+			.row.margin-20
+				.col-xs-12.col-sm-2.col-md-2.col-lg-2.text-right.xs-text-center
+					=image_tag("rounds/round4.png", :class => "round_num")
+				.col-xs-12.col-sm-10.col-md-10.col-lg-10
+					%p.xs-text-center
+						Copy Your QiwiCoin address into Your phofile
+			.row.margin-20
+				.col-xs-12.col-sm-2.col-md-2.col-lg-2.text-right.xs-text-center
+					=image_tag("rounds/round5.png", :class => "round_num")
+				.col-xs-12.col-sm-10.col-md-10.col-lg-10
+					%p.xs-text-center
+						Verify Your phone number

@@ -1,0 +1,76 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  alert: danger
+  notice: success
+  timedout: timedout
+
+  time:
+    formats:
+      default: "%m/%d/%Y %l:%M%P"
+      short: "%d %b %l:%M%P"
+      long: "%B %d, %Y %l:%M%P"
+    am: "am"
+    pm: "pm"
+
+# Captcha
+  simple_captcha:
+    # placeholder: "Enter the image value"
+    placeholder: ""
+    label: "Enter the code in the box:"
+
+  activerecord:
+    attributes:
+      user:
+        ip_address: Sorry, service
+      profile:
+        qwc_address_external: Qiwicoin Address
+    models:
+      user:
+        one: User
+        other: Users
+      qiwicoin_transfer:
+        one: Qiwicoin Transfer
+        other: Qiwicoin Transfers
+      bonus:
+        one: Bonus
+        other: Bonuses
+
+  errors:
+    invalid: is invalid
+    is_your_address: can't be one of your addresses
+    should_be_positive: must be positive
+    min_amount: should not be smaller than %{minimum} QWC
+    max_amount: can't be greater than your limit %{maximum} QWC
+    before_verify: Enter Your Qiwicoin Address before the verification
+
+    answer_incorrect: answer is incorrect
+    service_not_available: is currently not available. Please try again later.
+    invalid_phone_number: format is invalid for %{country}
+    sms_gateway: There was an error sending your SMS.
+    verify_sms_blank: You must enter an SMS code to verify.
+    verify_sms_incorrect: SMS Verification Code incorrect.
+    insufficient_privileges: Insufficient privileges
+
+  successes:
+    sms_gateway: SMS Number Successfully Updated. Verification Message Sent.
+    verify_sms_success: Your account was verified successfully.

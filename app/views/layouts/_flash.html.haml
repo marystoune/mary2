@@ -1,0 +1,9 @@
+.container
+  .row-fluid
+    - flash.each do |name, msg|
+      - if t("#{name}") == "timedout"
+        - next
+      %div{class: "alert alert-#{t("#{name}")}"}
+        - msg = [msg] unless msg.is_a? Array
+        - msg.each do |msg|
+          #{msg} <br/>

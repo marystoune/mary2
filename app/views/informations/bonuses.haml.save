@@ -1,0 +1,21 @@
+.container
+  .row-fluid.margin-20
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12
+      %h2
+        Bonuses
+      %table
+        %th
+          %td
+            address
+       	  %td
+       	    Amount
+       	  %td
+       	    Last name
+        - Bonus.order("amount desc").each do | bonus |
+          %tr
+       	    %td
+              = bonus.address
+            %td
+              = bonus.amount
+            %td
+              = bonus.last_name

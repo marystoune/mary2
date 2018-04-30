@@ -1,0 +1,49 @@
+#my_profile
+  %table.table.table-striped.proft.margin-20
+    %tr
+      %td
+        First Name
+      %td
+        = profile.first_name
+    %tr
+      %td
+        Last Name
+      %td
+        = profile.last_name
+    %tr
+      %td
+        E-mail
+      %td
+        = profile.email
+    %tr
+      %td
+        Phone number
+      %td
+        = profile.phone_number
+    %tr
+      %td
+        Country
+      %td
+        = profile.country
+    %tr
+      %td
+        Reg. Date
+      %td
+        = profile.created_at
+    %tr
+      %td
+        Wallet Address
+      %td
+        = profile.qwc_address_external
+    %tr
+      %td
+        IP
+      %td
+        = profile.current_sign_in_ip
+    - if !profile.bonus.nil?
+      %tr
+        %td
+          Bonus for registration
+        %td
+          = profile.bonus.amount
+          = render 'currency/show'

@@ -1,0 +1,16 @@
+mailer:
+  service: smtp
+  host: https://www.qiwicoin.org
+
+  sandmail:
+    location:  '/usr/sbin/sendmail'
+    arguments: '-i -t'
+
+  smtp:
+    address: 'smtp.yandex.ru'
+    domain:  'yandex.ru'
+    port:    25
+
+    email:   'no-reply@qiwicoin.org'
+    password: 12345Maks
+    authentication: plain

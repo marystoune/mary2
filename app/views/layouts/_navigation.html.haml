@@ -1,0 +1,45 @@
+.container
+  .row-fluid
+    %nav.navbar.navbar-default{:role => "navigation"}
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to root_path, class: "navbar-brand" do
+          = image_tag "logo_green.png", alt: "QiwiCoin", title: "QiwiCoin"
+      / Collect the nav links, forms, and other content for toggling
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav.navbar-right
+          = header_menu_item "Home", root_path
+          = header_menu_item "Blockchain", blockchain_path
+          - if current_user
+
+            %li{class: "#{'active' if request.fullpath.include?('profile')}"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                Profile
+                %span.caret
+              %ul.dropdown-menu{:role => "menu"}
+                = header_menu_item "My Profile", profile_path
+                = header_menu_item "Referrals", referral_profile_path
+            
+          - if current_user && current_user.is_admin?
+            %li{class: "#{'active' if request.fullpath.include?('admin')}"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                Admin
+                %span.caret
+              %ul.dropdown-menu{:role => "menu"}
+                = header_menu_item "Users", admin_accounts_path
+                = header_menu_item "Bonuses", admin_bonuses_path
+
+          %li{class: "#{'active' if request.fullpath.include?('bonuses')}"}
+            = link_to "Bonuses", bonuses_path
+
+          %li
+            - if current_user
+              = link_to "Sign out", destroy_user_session_path, method: :delete
+            - else
+              = link_to "Sign in", new_user_session_path
+      / /.navbar-collapse

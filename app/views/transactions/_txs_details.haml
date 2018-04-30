@@ -1,0 +1,35 @@
+.container
+	.row-fluid.margin-20
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+			%h2
+				TRANSACTIONS
+				%small Transactions contained within this block
+
+
+
+			- txs.each do |tx|
+				.transactions.table-responsive
+					%table.table.table-striped
+						%tbody
+							%tr
+								%th{colspan: "3"}
+									= link_to bin_to_hex(tx.tx_hash), tx_detail_path(tx.tx_id)
+									%span.pull-right
+										= tx.block.time_to_string
+							%tr
+								%td.hidden-xs.hidden-sm
+									- tx.tx.txin_details.each do |txin_detail|
+										- if txin_detail.pubkey_hash.present?
+											= link_to txin_detail.pubkey.encoded_address, address_detail_path(txin_detail.pubkey.id)
+										- else
+											%b No Inputs (Newly Generated Coins)
+										%br/
+								%td.hidden-xs.hidden-sm
+									= image_tag("arrow_right_green.png")
+								%td
+									- tx.tx.txout_details.each do |txout_detail|
+										= link_to txout_detail.pubkey.encoded_address, address_detail_path(txout_detail.pubkey.id)
+										%span.pull-right
+											%span= num_format(txout_detail.txout_value)
+											QWC
+										%br/

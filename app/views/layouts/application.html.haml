@@ -1,0 +1,43 @@
+!!!
+
+%html
+  %head
+    - if yield(:title).blank?
+      %title QiwiCoin - First personal not anonymous coin
+    - else
+      %title= yield(:title)
+
+    - if !yield(:description).blank?
+      %meta{:name => "description", :content => yield(:description)}
+
+    %meta{ :"http-equiv" => "X-UA-Compatible", :content => "IE=edge" }
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1" }
+    %meta{ :"http-equiv" => "content-type", :content => "text/html;charset=UTF-8" }
+    %meta{ :"http-equiv" => "content-language", :content => I18n.locale }
+
+    %link(rel="shortcut icon" href="/assets/fav.ico" type="image/x-icon")
+
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    %link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:800,600" type="text/css")
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = javascript_include_tag "https://www.qiwicoin.org/faye.js"
+
+    /= include_related_asset params[:controller].to_param + '.css'
+    /= include_related_asset params[:controller].to_param + '.js'
+
+    = csrf_meta_tags
+  %body
+
+    = render 'layouts/navigation'
+    = render 'layouts/flash'
+
+    - if request.fullpath.include? 'admin'
+      .row-fluid
+        .container
+          .col-xs-12.col-sm-12.col-md-12.col-lg-12
+            = yield
+    - else
+      = yield
+        
+    = render 'layouts/footer'
+

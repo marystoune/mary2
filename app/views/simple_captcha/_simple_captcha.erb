@@ -1,0 +1,57 @@
+<style type="text/CSS">
+  .simple_captcha{
+    border: 1px solid #ccc; 
+    padding: 0px !important; 
+    width: 100% !important;
+  }
+  
+  .simple_captcha,
+  .simple_captcha div{
+    display: table; 
+    border: 0;
+  }
+  
+  .simple_captcha .simple_captcha_field,
+  .simple_captcha .simple_captcha_image{
+    border: 1px solid #ccc;
+    margin: 0px 0px 2px 0px !important;
+    padding: 0px !important;
+  }
+
+  .simple_captcha .simple_captcha_field{
+    color: #555555;
+    width: 100% !important;
+  }
+
+  .simple_captcha .simple_captcha_image img{
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 110px !important;
+  }
+
+  .simple_captcha .simple_captcha_label{
+    font-size: 14px;
+  }
+
+  .simple_captcha .simple_captcha_field input{
+    padding-left: 8px; 
+    padding-right: 8px;
+    width: 100% !important;
+  }
+</style>
+
+<div class='simple_captcha'>
+  <div class='simple_captcha_image'>
+    <%= simple_captcha_options[:image] %>
+  </div>
+  
+  <div class='simple_captcha_field'>
+    <%= simple_captcha_options[:field] %>
+  </div>
+  
+  <!--
+    <div class='simple_captcha_label'>
+      <%= simple_captcha_options[:label] %>
+    </div>
+  -->
+</div>

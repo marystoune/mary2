@@ -1,0 +1,31 @@
+
+.container
+  .row-fluid
+    .col-xs-12.col-sm-12.col-md-8.col-lg-8.col-md-offset-2.col-lg-offset-2
+      %h1 AUTHENTICATION
+
+
+.container
+  .row-fluid.margin-20
+    .col-xs-12.col-sm-12.col-md-8.col-lg-8.col-md-offset-2.col-lg-offset-2
+
+      = form_for current_session, :url => {:action => :validate}, :html => {:class => "form-horizontal", :role => "form"} do |f|
+
+        .form-group
+          = f.label  :validation_code, "Verification Code", :class => "col-md-4 control-label"
+          .col-md-5
+            = f.text_field :validation_code, class: "form-control", placeholder: "Verification Code", autofocus: true
+
+        .form-group
+          .col-md-offset-4.col-md-5
+            = f.submit 'Validate', class: 'btn btn-primary btn-lg'
+  
+    .col-xs-12.col-sm-12.col-md-8.col-lg-8.col-md-offset-2.col-lg-offset-2
+      %p
+        You are signing in from a device we do not recognise.  You need to confirm this new device.
+      %p
+        Please check your email (#{current_user.email}) and enter the 5-digit validation code below.
+      %p
+        This device will be remembered for 30 days.  If you haven't received the validation email you can
+        =link_to('send another one', resend_auth_path(current_session))
+

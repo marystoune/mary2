@@ -1,0 +1,65 @@
+.container
+  .row-fluid.margin-20
+    .col-xs-12.contacts.fontin-sans.text-center
+      %h2
+        =("Do you have questions to support?").upcase
+      %a.margin-50{:href => "mailto:admin@qiwicoin.org"} admin@qiwicoin.org
+
+      %h2
+        =("Do you have partnership offer or request for us?").upcase
+      %a{:href => "mailto:partnership@qiwicoin.org"} partnership@qiwicoin.org
+      
+      - if @is_saved
+        .alert.alert-success.margin-20
+          Thanks. We will answer you.
+
+      - if current_user && current_user.is_banned_for_send_email_to_admin?
+        .alert.alert-warning.margin-20
+          Wait.. You can write new message after
+          = User::TIME_TO_BAN_FOR_USER_TO_CONTACT_US.to_s
+          minute(s)
+
+    - if current_user && !current_user.is_banned_for_send_email_to_admin?
+
+      .col-xs-12.margin-50
+        .row
+          .col-md-8.col-md-offset-4
+            %h2 Send email to admin
+
+        = form_for(@email_to_admin, url: send_message_to_admin_path, method: :post, html: {class: "form-horizontal", role: "form"}) do |f|
+
+          - if !@email_to_admin.errors.full_messages.empty?
+            .alert.alert-warning
+              - @email_to_admin.errors.full_messages.each do | error |
+                = error
+                %br
+
+          .form-group
+            = f.label :name, class: "col-md-4 control-label"
+            .col-md-5
+              = f.text_field :name, autofocus: true, class: "form-control"
+
+          .form-group
+            = f.label :email, class: "col-md-4 control-label"
+            .col-md-5
+              = f.email_field :email, autocomplete: "off", class: "form-control", readonly: true
+
+          .form-group
+            = f.label :subject, class: "col-md-4 control-label"
+            .col-md-5
+              = f.text_field :subject, autocomplete: "off", class: "form-control"
+
+          .form-group
+            = f.label :message, class: "col-md-4 control-label"
+            .col-md-5
+              = f.text_area :message, autocomplete: "off", class: "form-control"
+
+          .form-group
+            .col-md-offset-4.col-md-5
+              = f.submit "Send message", class: 'btn btn-primary btn-lg'
+
+    .col-xs-12.fontin-sans.text-center.margin-100.contacts
+      %p.thx
+        we consider all the messages and will gladly answer your questions,
+        %br
+        Best regards, QiwiCoin Team

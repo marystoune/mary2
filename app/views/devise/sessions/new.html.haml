@@ -1,0 +1,33 @@
+
+.container
+  .row-fluid
+    .col-xs-12.col-sm-12.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2
+      %h1 SIGN IN
+
+    .col-xs-12.col-sm-8.col-md-8.col-lg-8.margin-20
+      
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-horizontal", role: "form"}) do |f|
+      
+        .form-group
+          = f.label :email, class: "col-md-4 control-label"
+          .col-md-5
+            = f.email_field :email, autofocus: true, class: "form-control"
+      
+        .form-group
+          = f.label :password, class: "col-md-4 control-label"
+          .col-md-5
+            = f.password_field :password, autocomplete: "off", class: "form-control"
+      
+        - if devise_mapping.rememberable?
+          .form-group
+            .col-md-offset-4.col-md-5
+              = f.check_box :remember_me
+              = f.label :remember_me
+      
+        .form-group
+          .col-md-offset-4.col-md-5
+            = f.submit "Sign in", class: 'btn btn-primary btn-lg'
+  
+    .col-xs-12.col-sm-4.col-md-4.col-lg-4.margin-20
+      = render "devise/shared/links"
+

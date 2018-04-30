@@ -1,0 +1,28 @@
+=title 'QiwiCoin Blockchain explorer'
+
+=description 'QiwiCoin Blockchain explorer. View detailed information on all qiwicoin transactions and blocks.'
+
+
+.container
+	.row-fluid.text-center
+		%h1 Welcome to blockchain
+
+.container
+	.row-fluid.margin-20
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+			%table.table.table-striped.latestblocks.xs-table
+				%tr
+					%td Height
+					%td Approx. Time
+					%td.hidden-xs Transactions
+					%td Value Out
+
+				- @blocks.each do |block|
+					%tr
+						%td= block_height_link(block)
+						%td= block.time_to_string
+						%td.hidden-xs= block.block_num_tx
+						%td= num_format(block.block_value_out) + " QWC"
+
+
+= render 'last_txs', txs: @txs

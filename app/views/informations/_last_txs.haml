@@ -1,0 +1,17 @@
+.container
+        .row-fluid.margin-50
+                .col-xs-12.col-sm-12.col-md-8.col-lg-8.xs-table
+                        %h1.xs-text-center LATEST TRANSACTIONS
+                        %table.table.table-striped.dynamic#last_txs
+
+                                - txs.each do |tx|
+                                        = render 'last_tx', tx: tx
+                .col-xs-12.col-sm-12.col-md-4.col-lg-4
+                        %h1.xs-text-center SEARCH
+                        = form_tag search_path, class: "searchform", role: "search" do
+                                %span.help-block.small You may enter a block height, address, block hash, transaction hash, hash 160 or ipv4 address...
+                                .form-group
+                                        = text_field_tag :srch_condition, nil, class: "form-control input-lg"
+                                .form-group.text-right
+                                        %button.btn.btn-primary.btn-lg{:type => "submit"} Search
+

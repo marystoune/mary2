@@ -1,0 +1,40 @@
+.container
+  .row-fluid.margin-20
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.text-center
+      %h2
+        Bonuses
+      - if bonus_desc =  Bonus.bonus_descrption
+        %p.fontin-sans.present
+          Current bonus
+          %small for sign up and verification:
+          = bonus_desc
+          = render 'currency/show'
+
+      %table.table{ style: "margin: auto; width: 50%;"}
+        %tr
+          %td
+            Count
+          %td
+            Bonus
+        - BonusSetting.all.each do | bonus |
+          %tr      
+            %td    
+              = (bonus.begin.to_s + " - " + bonus.end.to_s).to_s
+            %td
+              = bonus.amount
+              = render 'currency/show'
+      %p
+        %strong
+          Total:
+          = "2 000 000"
+          = render 'currency/show'
+
+      %p
+        %strong
+          Total sent:
+          = Bonus.sum(:amount).to_f
+          = render 'currency/show'
+
+      %p.fontin-sans
+        It may take up to few days before the bonus is sent since manual process is required.
+

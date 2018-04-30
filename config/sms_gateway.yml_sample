@@ -1,0 +1,13 @@
+development:
+  api_uri:  "https://www.experttexting.com/exptapi/exptsms.asmx"
+  user_id:  "Your User Id"
+  password: "Your password"
+  api_key:  "APIKEY from your area view profile page."
+  from:     "DEFAULT"
+
+production:
+  api_uri:  "https://www.experttexting.com/exptapi/exptsms.asmx"
+  user_id:  "Your User Id"
+  password: "Your password"
+  api_key:  "APIKEY from your area view profile page."
+  from:     "DEFAULT"

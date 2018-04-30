@@ -1,0 +1,30 @@
+
+.container
+  .row-fluid
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12
+      %h1 CHANGE YOUR PASSWORD
+
+
+.container
+  .row-fluid.margin-20
+    .col-xs-12.col-sm-12.col-md-8.col-lg-8
+      = form_for(resource, as: resource_name, url: password_path(resource_name), method: :put, html: {class: "form-horizontal", role: "form"}) do |f|
+            
+        = f.hidden_field :reset_password_token
+      
+        .form-group
+          = f.label :password, "New password", class: "col-md-4 control-label"
+          .col-md-5
+            = f.password_field :password, autofocus: true, autocomplete: "off", class: "form-control"
+      
+        .form-group
+          = f.label :password_confirmation, "Confirm new password", class: "col-md-4 control-label"
+          .col-md-5
+            = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
+
+        .form-group
+          .col-md-offset-4.col-md-5
+            = f.submit "Change my password", class: 'btn btn-primary btn-lg'
+
+    .col-xs-12.col-sm-12.col-md-4.col-lg-4
+      = render "devise/shared/links"

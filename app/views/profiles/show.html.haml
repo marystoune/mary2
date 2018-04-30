@@ -1,0 +1,97 @@
+=title "Qiwicoin Profile"
+
+=description "View information about your qiwicoin profile"
+
+
+.container
+	.row-fluid
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12.present.text-center
+			- if !@profile.phone_number and !@profile.is_verified
+				%h1
+					PROFILE SETTINGS
+				%p
+					Change your profile settings.
+			- else 
+				%h1.headers
+					MY PROFILE
+
+.container
+	.row-fluid
+		.col-xs-12.col-sm-12.col-md-12.col-lg-12
+			- if !@profile.qwc_address_external || @profile.qwc_address_external.empty?
+				= form_tag qiwicoin_address_profile_path, {class: "form-horizontal", role: "form"} do 
+					.form-group
+						.col-sm-5.col-sm-offset-3
+							%h3
+								Set your Profile
+
+					.form-group
+						= label_tag :qwc_address_external, "Qiwicoin Address", class: "col-sm-3 control-label"
+						.col-sm-5
+							= text_field_tag "user[qwc_address_external]", @address, class: "form-control"
+
+					.form-group
+						= label_tag :first_name, "First Name", class: "col-sm-3 control-label"
+						.col-sm-5
+							= text_field_tag "user[first_name]", @first_name, { class: "form-control" }
+				
+					.form-group
+						= label_tag :last_name, "Last Name", class: "col-sm-3 control-label"
+						.col-sm-5
+							= text_field_tag "user[last_name]", @last_name, { class: "form-control" }
+
+					.form-group
+						= label_tag :country, "Country", class: "col-sm-3 control-label"
+						.col-sm-5	
+							= select_tag "user[country]", options_for_select(Country.all.sort.map { |c| [c[0], c[0]]}, @country || "United States"), {class: "form-control"}
+
+					.form-group
+						.col-sm-offset-3.col-sm-5
+							= submit_tag "Save", class: "btn btn-primary", disabled: @profile.is_verified
+
+			- if @profile.phone_number  and @profile.is_verified
+				= render 'completed_profile', profile: @profile
+
+			- if @profile.qwc_address_external && @profile.qwc_address_external.size > 0 && !@profile.is_verified
+				%p.address-verified.green{class: 'visible' }
+					Your Qiwicoin Address is
+					= @profile.qwc_address_external
+
+				%h3
+					Mobile Number 
+					%small (Optional)
+		
+				%p.gray
+					Please enter Your Mobile Phone number below. International SMS messaging can sometimes be unreliable and may not be available to some countries and networks.
+		
+				%p
+					= form_tag send_sms_profile_path, class: "form-inline", :role => "form" do 
+						.form-group
+							= label_tag :country, "Country", class: "sr-only"
+							= select_tag :country, options_for_select(Country.all.sort.map { |c| [c[0]+" (+#{Country.find_country_by_name(c[0]).country_code})", c[0]]}, @profile.country || "United States"), class: "form-control"
+						.form-group
+							= label_tag :phone_number, "Phone Number", class: "sr-only"
+							= telephone_field_tag :phone_number, @profile.phone_number, class: "form-control", disabled: @profile.is_verified
+						.form-group
+							= submit_tag "Send SMS Code", class: "btn btn-primary", disabled: @profile.is_verified
+
+				%p.sms-verified{class: @profile.is_verified ? 'visible' : 'invisible'}
+					%font{color: "green"}
+						SMS Verified
+
+				.sms-unverified.well{class: @profile.is_verified ? 'invisible' : 'visible'}
+					%p.gray
+						Enter the code contained within verification sms message.
+					%p.gray
+						It may take few days to get a bonus after you have verified your account since it is processed manually.
+						
+					= form_tag sms_verification_profile_path, class: "form-inline", :role => "form" do 
+						.form-group
+							= label_tag :sms_code, "Phone Number", class: "sr-only"
+							= text_field_tag :sms_code, nil, placeholder: "SMS Verification Code", class: "form-control", disabled: @profile.is_verified
+						.form-group
+							= submit_tag "Verify", class: "btn btn-primary", disabled: @profile.is_verified
+							
+					
+
+

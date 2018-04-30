@@ -1,0 +1,9 @@
+development:
+  referal_award: "5"
+  referer_award: "25"
+  parent_referrer_award: "5"
+  
+production:
+  referal_award: "5"
+  referer_award: "25"
+  parent_referrer_award: "5"

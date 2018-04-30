@@ -1,0 +1,42 @@
+
+.container
+  .row-fluid
+    .col-xs-12.col-sm-12.col-md-10.col-md-offset-2.col-lg-10.col-lg-offset-2
+      %h1 SIGN UP
+
+.container
+  .row-fluid.margin-20
+    .col-xs-12.col-sm-12.col-md-8.col-lg-8
+
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-horizontal", role: "form"}) do |f|
+        
+        = hidden_field_tag :invitation_token, params[:invitation_token]
+        
+        .form-group
+          = f.label :email, class: "col-md-4 control-label"
+          .col-md-5
+            = f.email_field :email, autofocus: true, class: "form-control"
+      
+        .form-group
+          = f.label :password, class: "col-md-4 control-label"
+          .col-md-5
+            = f.password_field :password, autocomplete: "off", class: "form-control"
+      
+        .form-group
+          = f.label :password_confirmation, class: "col-md-4 control-label"
+          .col-md-5
+            = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
+
+        .form-group
+          = f.label :recaptcha_response_field, "Captcha", :class => "col-md-4 control-label"
+          .col-md-5
+            %div
+              = show_simple_captcha
+
+        .form-group
+          .col-md-offset-4.col-md-5
+            = f.submit "Sign up", class: 'btn btn-primary btn-lg'
+
+    .col-xs-12.col-sm-12.col-md-4.col-lg-4
+      = render "devise/shared/links"
+

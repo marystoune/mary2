@@ -1,0 +1,11 @@
+%tr
+  %td
+    = link_to bin_to_hex(tx.tx_hash)[0,25] + "...", tx_detail_path(tx.tx_id)
+  %td.hidden-xs
+    = tx.block.time_to_string
+  %td.text-right
+    - tx_in = tx.txin_details.sum(:txin_value)
+    - tx_out = tx.txout_details.sum(:txout_value)
+    %span= num_format(tx_in == 0.0 ? tx_out : tx_in)
+    = " "
+    = render 'currency/show'

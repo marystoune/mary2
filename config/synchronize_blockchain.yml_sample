@@ -1,0 +1,8 @@
+development:
+  dirname: /type/path/to/bitcoin-abe-master/directory
+  utility: python -m Abe.abe --config abe-my.conf --commit-bytes 100000 --no-serve
+
+production:
+  dirname: /type/path/to/bitcoin-abe-master/directory
+  utility: python -m Abe.abe --config abe-my.conf --commit-bytes 100000 --no-serve
+

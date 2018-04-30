@@ -1,0 +1,51 @@
+=title "Your Referrals"
+
+=description "View information about your referrals"
+
+
+.container
+  .row-fluid
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12.present.text-center
+      %h1.headers
+        MY REFERRALS
+
+.container
+  .row-fluid
+    .col-xs-12.col-sm-12.col-md-12.col-lg-12
+
+      %h3
+        Link for Referrals
+      %p
+        Tell your friends about QiwiCoin and get referral bonus when they verify accounts.
+      %p
+        Level 1: 25 QWC
+      %p
+        Level 2: 5 QWC
+      %p
+        If your friends sing up with your referral link they get +5% to their bonus.
+
+      %p.gray
+        Your Link is
+        = new_user_registration_url + "/#{@profile.id}"
+
+      %h3
+        List of your Referrals
+
+      %table.table.table-bordered
+        %thead
+          %tr.explanation
+            %th
+              Date
+            %th
+              Amount (QWC)
+        %tbody
+          - unless @profile.referrer_payments.where(is_sended: true).blank?
+            - @profile.referrer_payments.where(is_sended: true).each do |payment|
+              %tr
+                %td
+                  %time=l(payment.created_at, :format => :short)
+                %td
+                  = payment.amount
+          - else
+            = render :partial => "layouts/no_data"
+

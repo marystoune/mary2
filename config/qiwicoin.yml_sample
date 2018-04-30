@@ -1,0 +1,11 @@
+development:
+  username: QIWICOIN_USER
+  password: QIWICOIN_PASSWORD
+  url: http://localhost:8332/
+  profit: QIWICOIN_PROFIT_ADDRESS
+  
+production:
+  username: QIWICOIN_USER
+  password: QIWICOIN_PASSWORD
+  url: http://localhost:8332/
+  profit: QIWICOIN_PROFIT_ADDRESS
